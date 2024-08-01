@@ -92,14 +92,7 @@
     <input name="system.honor.points" type="number" value="{{system.honor.points}}" data-type="Number" />
   </div>
    --}}
-  <div class="rank-name">
-    {{localize "l5r45.ranks.gloryRank"}}
-    <input name="system.glory.rank" type="number" value="{{system.glory.rank}}" data-type="Number" />
-  </div>
-  <div class="rank-name">
-    {{localize "l5r45.ranks.gloryPoints"}}
-    <input name="system.glory.points" type="number" value="{{system.glory.points}}" data-type="Number" />
-  </div>
+  {{> "systems/l5r45/templates/partials/pc-glories.hbs"}}
   <div class="rank-name">
     {{localize "l5r45.ranks.statusRank"}}
     <input name="system.status.rank" type="number" value="{{system.status.rank}}" data-type="Number" />
@@ -176,7 +169,7 @@
             <td colspan="3">
               <a class="icon-item defense-roll">
                 <img title="Roll defense" src="icons/dice/d10black.svg" />
-                {{system.defense.roll}}k{{system.defense.keep}}+{{system.defense.total_mod}}
+                {{system.defense.roll}}k{{system.defense.keep}}+{{addIfSecondGeSev system.defense.total_mod system.defense.rank}}
               </a></td>
             </td>
           </tr>

@@ -1,0 +1,17 @@
+<div class="glories panelBorder">
+  <h2>
+    <div>{{localize "l5r45.sheet.glories"}}</div>
+      <a class="item-create" data-type="glory" title="{{localize "l5r45.sheet.addGlorie"}}">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h2>
+  <section class="special-list glory-list">
+    {{#each glories as |glory id|}}
+      <div class="glory-item item" data-item-id="{{glory._id}}">
+        <input class="glory-name inline-edit" type="text" value="{{glory.name}}" data-field="name" placeholder="{{localize "l5r45.sheet.gloryName"}}" />
+        <input class="glory-name inline-edit" type="number" value="{{glory.system.value}}" data-field="system.value" placeholder="{{localize "l5r45.ranks.honor.table.val"}}" data-type="Number" />
+        <a class="item-edit"  title="{{localize "l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>
+      </div>
+    {{/each}}
+  </section>
+</div>

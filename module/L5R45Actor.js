@@ -68,7 +68,34 @@ export default class l5r45Actor extends Actor {
 
     // calculate initiative
     l5r45Data.initiative.roll = parseInt(Math.max(l5r45Data.traits.ref, l5r45Data.traits.agi)) + parseInt(l5r45Data.initiative.roll_mod);
-    l5r45Data.initiative.keep = parseInt(Math.min(l5r45Data.traits.ref, l5r45Data.traits.agi)) + l5r45Data.initiative.keep_mod;
+    l5r45Data.initiative.keep = parseInt(Math.min(l5r45Data.traits.ref, l5r45Data.traits.agi)) + parseInt(l5r45Data.initiative.keep_mod);
+
+    // calculate defense
+    let defenseDice = 0;
+    // some skills use the void ring as a trait
+    switch(l5r45Data.defense.trait) {
+      case "void":
+        defenseDice = l5r45Data.rings.void.rank;
+        break;
+      case "fire":
+        defenseDice = l5r45Data.rings.fire;
+        break;
+      case "water":
+        defenseDice = l5r45Data.rings.water;
+        break;
+      case "earth":
+        defenseDice = l5r45Data.rings.earth;
+        break;
+      case "air":
+        defenseDice = l5r45Data.rings.air;
+        break;
+      default:
+        defenseDice = l5r45Data.traits[l5r45Data.defense.trait];
+        break;
+    }
+
+    l5r45Data.defense.roll = parseInt(defenseDice) + parseInt(l5r45Data.defense.rank) + parseInt((l5r45Data.defense.rank >= 3) ? 1 : 0) + parseInt(l5r45Data.defense.roll_mod);
+    l5r45Data.defense.keep = parseInt(defenseDice) + parseInt((l5r45Data.defense.rank >= 5) ? 1 : 0) +  + parseInt(l5r45Data.defense.keep_mod);
 
     // calculate wounds level values
     let multiplier = l5r45Data.woundsMultiplier;
@@ -149,10 +176,10 @@ export default class l5r45Actor extends Actor {
     l5r45Data.woundPenalty = l5r45Data.currentWoundLevel.penalty
 
     // calculate insight points
-    let insightRings = ((l5r45Data.rings.air + l5r45Data.rings.earth + l5r45Data.rings.fire + l5r45Data.rings.water + l5r45Data.rings.void.rank) * 10);
+    let insightRings = ((l5r45Data.rings.air + l5r45Data.rings.earth + l5r45Data.rings.fire + l5r45Data.rings.water + l5r45Data.rings.void.rank) * 10) + parseInt(l5r45Data.defense.rank);
     let insighSkills = 0;
     for (const [skill, skillData] of Object.entries(skills)) {
-      insighSkills += parseInt(skillData.system.rank) * ((skillData.system.type === "knowledge") ? 2 : 1);
+      insighSkills += parseInt(skillData.system.rank) * ((skillData.system.type === "knowledge" || skillData.system.type === "artistic") ? 2 : 1);
     }
     l5r45Data.insight.points = insightRings + insighSkills;
 

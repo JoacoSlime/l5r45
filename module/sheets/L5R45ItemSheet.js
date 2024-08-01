@@ -1,7 +1,7 @@
 export default class l5r45ItemSheet extends ItemSheet {
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 530,
       height: 540,
       classes: ["l5r45", "sheet", "item"]

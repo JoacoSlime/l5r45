@@ -239,7 +239,8 @@
       "technique",
       "spell",
       "kata",
-      "kiho"
+      "kiho",
+      "glory"
     ],
     "templates": {
       "itemDescription": {
@@ -348,6 +349,12 @@
       "ring": "earth",
       "mastery": 1,
       "type": "internal"
+    },
+    "glory": {
+      "templates": [
+        "itemDescription"
+      ],
+      "value" : 0
     }
   }
 }

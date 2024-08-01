@@ -10,6 +10,7 @@ export default class l5r45Item extends Item {
     "disadvantage": "systems/l5r45/templates/partials/disadvantage-card.hbs",
     "kata": "systems/l5r45/templates/partials/kata-card.hbs",
     "kiho": "systems/l5r45/templates/partials/kiho-card.hbs",
+    "glory": "systems/l5r45/templates/partials/glory-card.hbs",
   };
 
   async _preCreate(data, options, userId) {
@@ -47,6 +48,9 @@ export default class l5r45Item extends Item {
           break;
         case 'kiho':
           img = "systems/l5r45/assets/icons/tori.png";
+          break;
+        case 'glory':
+          img = "systems/l5r45/assets/icons/scroll.png";
           break;
 
       }

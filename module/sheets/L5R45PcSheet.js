@@ -3,7 +3,7 @@ import * as Chat from "../chat.js";
 
 export default class l5r45PcSheet extends ActorSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/l5r45/templates/sheets/pc-sheet.hbs",
       classes: ["l5r45", "pc"],
       width: 879,
@@ -76,6 +76,7 @@ export default class l5r45PcSheet extends ActorSheet {
     baseData.spells = baseData.items.filter(function (item) { return item.type == "spell" });
     baseData.katas = baseData.items.filter(function (item) { return item.type == "kata" });
     baseData.kihos = baseData.items.filter(function (item) { return item.type == "kiho" });
+    baseData.glories = baseData.items.filter(function (item) { return item.type == "glory" });
 
     baseData.masteries = [];
     for (let skill of baseData.skills) {
@@ -113,6 +114,7 @@ export default class l5r45PcSheet extends ActorSheet {
       new ContextMenu(html, ".disadvantage-card", this.itemContextMenu);
       new ContextMenu(html, ".kata-card", this.itemContextMenu);
       new ContextMenu(html, ".kiho-card", this.itemContextMenu);
+      new ContextMenu(html, ".glory-item", this.itemContextMenu);
 
       html.find(".item-roll").click(this._onItemRoll.bind(this));
       html.find(".weapon-roll").click(this._onWeaponRoll.bind(this));
@@ -249,8 +251,7 @@ export default class l5r45PcSheet extends ActorSheet {
       skillTrait,
       rollBonus: rollBonus,
       keepBonus: keepBonus,
-      totalBonus: totalBonus
-    });
+      totalBonus: totalBonus});
     Dice.SkillRoll({
       woundPenalty: this.actor.system.woundPenalty,
       actorTrait: actorTrait,

@@ -1,0 +1,21 @@
+<div class="item-border {{type}}">
+  <div class="glory-card glory" data-item-id="{{_id}}">
+    <div class="glory-name"><h3>
+        {{#if inSheet}}
+          <a title="{{localize "l5r45.sheet.edit"}}" class="item-edit">{{name}}</a>
+        {{else}}
+          {{name}}
+        {{/if}}
+      </h3>
+    </div>
+    <div class="glory-info glory-stats">
+      <div class="glory-type">
+          <p>{{{system.description}}}</p>
+      </div>
+    {{#if inSheet}}
+      <div>
+        <a class="item-edit"  title="{{localize "l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>
+      </div>
+    {{/if}}
+  </div>
+</div>

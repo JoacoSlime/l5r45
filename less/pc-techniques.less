@@ -42,10 +42,7 @@
   }
   .techniques-list {
     .technique-stats{
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      column-gap:.2em;
-      align-items: center;
+      display: flex;
     }
   }
   .masteries-list {
@@ -54,33 +51,6 @@
       grid-template-columns: 1fr;
       column-gap:.2em;
       align-items: center;
-    }
-  }
-  .spells-list {
-    .spell-stats{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-areas: "ring mastery duration" "range aoe aoe" "raises raises raises";
-      column-gap:.2em;
-      align-items: center;
-      .spell-ring {
-        grid-area: ring;
-      }
-      .spell-mastery {
-        grid-area: mastery;
-      }
-      .spell-range {
-        grid-area: range;
-      }
-      .spell-aoe {
-        grid-area: aoe;
-      }
-      .spell-duration {
-        grid-area: duration;
-      }
-      .spell-raises {
-        grid-area: raises;
-      }
     }
   }
   .kata-list {

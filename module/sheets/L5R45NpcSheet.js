@@ -2,7 +2,7 @@ import * as Dice from "../dice.js";
 
 export default class l5r45NpcSheet extends ActorSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/l5r45/templates/sheets/npc-sheet.hbs",
       classes: ["l5r45", "npc"],
       width: 650

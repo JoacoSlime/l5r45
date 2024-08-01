@@ -19,6 +19,7 @@ async function preloadHandlebarsTemplates() {
     "systems/l5r45/templates/partials/disadvantage-card.hbs",
     "systems/l5r45/templates/partials/kata-card.hbs",
     "systems/l5r45/templates/partials/kiho-card.hbs",
+    "systems/l5r45/templates/partials/glory-card.hbs",
     "systems/l5r45/templates/partials/pc-wounds.hbs",
     "systems/l5r45/templates/partials/pc-advantages.hbs",
     "systems/l5r45/templates/partials/pc-stats.hbs",
@@ -31,6 +32,7 @@ async function preloadHandlebarsTemplates() {
     "systems/l5r45/templates/partials/pc-spell-mastery.hbs",
     "systems/l5r45/templates/partials/pc-armors.hbs",
     "systems/l5r45/templates/partials/pc-armor-tn.hbs",
+    "systems/l5r45/templates/partials/pc-glories.hbs",
     "systems/l5r45/templates/partials/npc-skills.hbs",
     "systems/l5r45/templates/partials/npc-wounds.hbs",
     "systems/l5r45/templates/partials/npc-stats.hbs",
@@ -182,6 +184,17 @@ Hooks.once("init", function () {
       }
     }
     return outStr;
+  });
+
+  Handlebars.registerHelper('addIfSecondGeSev', function (firstValue, secondValue) {
+    firstValue = parseFloat(firstValue);
+    secondValue = parseFloat(secondValue);
+    
+    if (secondValue >= 7) {
+      firstValue += 5;
+    }
+  
+    return firstValue;
   });
 
 });
