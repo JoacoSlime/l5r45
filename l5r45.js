@@ -1,9 +1,9 @@
 import { l5r45 } from "./module/config.js";
-import l5r45Actor from "./module/l5r45Actor.js";
-import l5r45Item from "./module/l5r45Item.js";
-import l5r45ItemSheet from "./module/sheets/l5r45ItemSheet.js";
-import l5r45IPcSheet from "./module/sheets/l5r45PcSheet.js";
-import l5r45INpcSheet from "./module/sheets/l5r45NpcSheet.js";
+import l5r45Actor from "./module/L5R45Actor.js";
+import l5r45Item from "./module/L5R45Item.js";
+import l5r45ItemSheet from "./module/sheets/L5R45ItemSheet.js";
+import l5r45IPcSheet from "./module/sheets/L5R45PcSheet.js";
+import l5r45INpcSheet from "./module/sheets/L5R45NpcSheet.js";
 import { TenDiceRule, roll_parser } from "./module/dice.js";
 
 async function preloadHandlebarsTemplates() {
