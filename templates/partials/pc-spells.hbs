@@ -1,0 +1,15 @@
+<section class="spells techniques panelBorder">
+  <h2>
+    <div>{{localize "l5r45.sheet.spells"}}</div>
+    {{> "systems/l5r45/templates/partials/pc-spell-slots.hbs"}}
+    <a class="item-create" data-type="spell" title="{{localize "l5r45.sheet.addTechSpell"}}">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
+  {{> "systems/l5r45/templates/partials/pc-spell-mastery.hbs"}}
+  <section class="special-list spells-list">
+    {{#each spells as |spell id|}}
+    {{> "systems/l5r45/templates/partials/spell-card.hbs" system=spell.system inSheet=true}}
+    {{/each}}
+  </section>
+</section>

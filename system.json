@@ -1,0 +1,52 @@
+{
+  "id": "l5r45",
+  "title": "Legend of the Five Rings 4.5th Edition",
+  "description": "System to play L5R 4.5th edition",
+  "authors": [
+    {
+      "name": "Mateo Caycedo Alvarez",
+      "url": "https://gitlab.com/teo-cay/"
+    },
+    {
+      "name": "JoacoSlime",
+      "url": "https://github.com/JoacoSlime/"
+    }
+  ],
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 10,
+    "verified": 11,
+    "maximum": 11
+  },
+  "esmodules": [
+    "l5r45.js"
+  ],
+  "styles": [
+    "l5r45.css"
+  ],
+  "background": "systems/l5r45/l5r45cover.webp",
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "url": "https://github.com/JoacoSlime/l5r45",
+  "manifest": "https://raw.github.com/JoacoSlime/l5r45/main/system.json",
+  "download": "https://github.com/JoacoSlime/l5r45/archive/refs/tags/initial-release.zip",
+  "license": "GPL v3"
+}

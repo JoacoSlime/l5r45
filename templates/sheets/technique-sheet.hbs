@@ -1,0 +1,19 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+  </header>
+  <div class="sheet-content">
+    <table>
+      <tr>
+        <th>{{localize "l5r45.skill.rank"}}</th>
+      </tr>
+      <td>
+        <input name="system.rank" type="number" value="{{item.system.rank}}" data-type="Number" />
+      </td>
+    </table>
+    <h2>{{localize "l5r45.sheet.rulesSummary"}}</h2>
+    {{editor item.system.specialRules target="system.specialRules" button=true owner=owner editable=editable}}
+    <h2>{{localize "l5r45.sheet.description"}}</h2>
+    {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
+  </div>
+</form>

@@ -1,0 +1,24 @@
+<div class="item-border {{type}}">
+  <div class="technique-card item" data-item-id="{{_id}}">
+    <div class="technique-info technique-name">
+      <h3>
+        {{#if inSheet}}
+        <img width="15px" height="15px" src="{{img}}" />
+        <a title="{{localize "l5r45.sheet.edit"}}" class="item-edit">{{name}}</a>
+        {{else}}
+        {{name}}
+        {{/if}}
+      </h3>
+    </div>
+    <div class="technique-info technique-stats">
+      <div class="technique-effects">
+        {{{system.specialRules}}}
+      </div>
+    </div>
+    {{#if inSheet}}
+      <div>
+        <a class="item-edit"  title="{{localize "l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>
+      </div>
+    {{/if}}
+  </div>
+</div>

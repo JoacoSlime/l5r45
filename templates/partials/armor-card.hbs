@@ -1,0 +1,36 @@
+<div class="item-border {{type}}">
+  <div class="armor-card item" data-item-id="{{_id}}">
+    <div class="armor-info armor-name">
+      {{#if inSheet}}
+      <img width="15px" height="15px" src="{{img}}" />
+      <h3><a class="item-edit">{{name}}</a></h3>
+      {{else}}
+      {{name}}
+      {{/if}}
+    </div>
+    <div class="armor-info armor-stats">
+      <div class="armor-reduction">
+        {{localize "l5r45.armor.reduction"}}: {{system.reduction}}
+      </div>
+      <div class="armor-type">
+        {{localize "l5r45.armor.type"}}: {{localize (concat "l5r45.armor." system.type)}}
+      </div>
+      {{#if inSheet}}
+      <div>{{localize "l5r45.armor.equiped"}}?
+        <input class="equiped-check inline-edit" data-field="system.equiped" type="checkbox" {{checked system.equiped}}
+          data-type="Boolean" />
+      </div>
+      {{/if}}
+    </div>
+    {{#unless inSheet}}
+    <div class="armor-effects">
+      {{{system.description}}}
+    </div>
+    {{/unless}}
+    {{#if inSheet}}
+    <div>
+      <a class="item-edit" title="{{localize " l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>
+    </div>
+    {{/if}}
+  </div>
+</div>

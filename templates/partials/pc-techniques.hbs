@@ -1,0 +1,18 @@
+<section class="spells techniques panelBorder">
+  <h2>
+      <div>{{localize "l5r45.sheet.techniques"}}</div>
+      <a class="item-create" data-type="technique" title="{{localize "l5r45.sheet.addTechSpell"}}">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h2>
+  <section class="special-list techniques-list">
+    {{#each techniques as |technique id|}}
+    {{> "systems/l5r45/templates/partials/technique-card.hbs" system=technique.system inSheet=true}}
+    {{/each}}
+  </section>
+  <section class="special-list kiho-list">
+    {{#each kihos as |kiho id|}}
+    {{> "systems/l5r45/templates/partials/kiho-card.hbs" system=kiho.system inSheet=true}}
+    {{/each}}
+  </section>
+</section>

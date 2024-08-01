@@ -1,0 +1,82 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+    <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+  </header>
+  <div class="sheet-content">
+    <table>
+      <tr>
+        <th>{{localize "l5r45.skill.rank"}}</th>
+        <th>{{localize "l5r45.skill.school"}}</th>
+      </tr>
+      <tr>
+        <select name="system.type">
+          <option selected disabled>{{localize "l5r45.skill.type"}}</option>
+          {{#select item.system.type}}
+          {{#each config.skillTypes as |name type|}}
+          <option value="{{type}}">{{localize name}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+      </tr>
+      <tr>
+        <select name="system.trait">
+          <option selected disabled>{{localize "l5r45.skill.trait"}}</option>
+          {{#select item.system.trait}}
+          {{#each config.traits as |name trait|}}
+          <option value="{{trait}}">{{localize name}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+      </tr>
+      <tr>
+        <td>
+          <input name="system.rank" type="number" value="{{item.system.rank}}" data-type="Number" />
+        </td>
+        <td>
+          <input name="system.school" type="checkbox" {{checked item.system.school}} data-type="Boolean" />
+        </td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.skill.mastery3"}}:</th>
+        <td colspan="2">
+          <textarea name="system.mastery_3">{{item.system.mastery_3}}</textarea>
+          </td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.skill.mastery5"}}:</th>
+        <td colspan="2">
+           <textarea name="system.mastery_5">{{item.system.mastery_5}}</textarea>
+            </td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.skill.mastery7"}}:</th>
+        <td colspan="2">
+           <textarea name="system.mastery_7">{{item.system.mastery_7}}</textarea>
+            </td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.skill.insightbonus"}}:</th>
+        <td colspan="2"><input name="system.insight_bonus" type="number" value="{{item.system.insight_bonus}}"
+            data-type="Number" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.mech.roll"}} {{localize "l5r45.mech.bonus"}}:</th>
+        <td colspan="2"><input name="system.roll_bonus" type="number" value="{{item.system.roll_bonus}}"
+            data-type="Number" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.mech.keep"}} {{localize "l5r45.mech.bonus"}}:</th>
+        <td colspan="2"><input name="system.keep_bonus" type="number" value="{{item.system.keep_bonus}}"
+            data-type="Number" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "l5r45.mech.total"}} {{localize "l5r45.mech.bonus"}}:</th>
+        <td colspan="2"><input name="system.total_bonus" type="number" value="{{item.system.total_bonus}}"
+            data-type="Number" /></td>
+      </tr>
+    </table>
+    <h2>{{localize "l5r45.sheet.rulesSummary"}}</h2>
+    {{editor item.system.specialRules target="system.specialRules" button=true owner=owner editable=editable}}
+  </div>
+</form>

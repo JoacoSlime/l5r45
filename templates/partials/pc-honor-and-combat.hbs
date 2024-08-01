@@ -1,0 +1,187 @@
+<section class="ranks">
+  <label style="
+    grid-column-end: 3;
+    grid-column-start: 1;
+    display: grid;
+  ">
+    <div>
+      <table class="honor-table" align="center">
+        <tr>
+          <th colspan="7">{{localize "l5r45.ranks.honor.table.header"}}</th>
+        </tr>
+        <tr>
+          <th colspan="2">{{localize "l5r45.ranks.honor.table.virt"}}</td>
+          <th>{{localize "l5r45.ranks.honor.table.rank"}}</td>
+          <th style="padding: 0 0.5rem;"></td>
+          <th>{{localize "l5r45.ranks.honor.table.rank"}}</td>
+          <th colspan="2">{{localize "l5r45.ranks.honor.table.vice"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.comp"}}</td>
+          <td><input name="system.honor.comp.points" type="number" value="{{system.honor.comp.points}}" data-type="Number" /></td>
+          <td>{{system.honor.comp.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.comp.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.comp.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.crue"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.cour"}}</td>
+          <td><input name="system.honor.cour.points" type="number" value="{{system.honor.cour.points}}" data-type="Number" /></td>
+          <td>{{system.honor.cour.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.cour.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.cour.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.cowa"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.court"}}</td>
+          <td><input name="system.honor.court.points" type="number" value="{{system.honor.court.points}}" data-type="Number" /></td>
+          <td>{{system.honor.court.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.court.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.court.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.rude"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.duty"}}</td>
+          <td><input name="system.honor.duty.points" type="number" value="{{system.honor.duty.points}}" data-type="Number" /></td>
+          <td>{{system.honor.duty.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.duty.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.duty.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.rebe"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.self"}}</td>
+          <td><input name="system.honor.self.points" type="number" value="{{system.honor.self.points}}" data-type="Number" /></td>
+          <td>{{system.honor.self.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.self.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.self.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.indu"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.just"}}</td>
+          <td><input name="system.honor.just.points" type="number" value="{{system.honor.just.points}}" data-type="Number" /></td>
+          <td>{{system.honor.just.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.just.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.just.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.arbi"}}</td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.ranks.honor.sinc"}}</td>
+          <td><input name="system.honor.sinc.points" type="number" value="{{system.honor.sinc.points}}" data-type="Number" /></td>
+          <td>{{system.honor.sinc.rank}}</td>
+          <td style="padding: 0 0.5rem;"></td>
+          <td>{{math 10 "-" system.honor.sinc.rank}}</td>
+          <td><input type="number" value="{{math 100 "-" system.honor.sinc.points}}" data-type="Number" readonly="readonly" disabled="disabled"/></td>
+          <td>{{localize "l5r45.ranks.honor.dece"}}</td>
+        </tr>
+      </table>
+    </div>
+  </label>
+  {{!-- 
+  <div class="rank-name">
+    {{localize "l5r45.ranks.honorRank"}}
+    <input name="system.honor.rank" type="number" value="{{system.honor.rank}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.honorPoints"}}
+    <input name="system.honor.points" type="number" value="{{system.honor.points}}" data-type="Number" />
+  </div>
+   --}}
+  <div class="rank-name">
+    {{localize "l5r45.ranks.gloryRank"}}
+    <input name="system.glory.rank" type="number" value="{{system.glory.rank}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.gloryPoints"}}
+    <input name="system.glory.points" type="number" value="{{system.glory.points}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.statusRank"}}
+    <input name="system.status.rank" type="number" value="{{system.status.rank}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.statusPoints"}}
+    <input name="system.status.points" type="number" value="{{system.status.points}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.shadowRank"}}
+    <input name="system.shadow_taint.rank" type="number" value="{{system.shadow_taint.rank}}" data-type="Number" />
+  </div>
+  <div class="rank-name">
+    {{localize "l5r45.ranks.shadowPoints"}}
+    <input name="system.shadow_taint.points" type="number" value="{{system.shadow_taint.points}}" data-type="Number" />
+  </div>
+</section>
+<section class="combat-stats">
+  <label>
+    <div>
+      <table class="initiative-table" align="center">
+        <tr>
+          <th colspan="3"> {{localize "l5r45.mech.init"}} </th>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.mech.roll"}}/{{localize "l5r45.mech.keep"}} {{localize "l5r45.mech.bonus"}}</td>
+          <td><input type="number" name="system.initiative.roll_mod" value="{{system.initiative.roll_mod}}"
+              data-type="Number" /></td>
+          <td><input type="number" name="system.initiative.keep_mod" value="{{system.initiative.keep_mod}}"
+              data-type="Number" /></td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.mech.mod"}}</td>
+          <td colspan="2"><input type="number" name="system.initiative.total_mod" value="{{system.initiative.total_mod}}"
+              data-type="Number" /></td>
+        </tr>
+        <tr>
+          <td colspan="3">{{system.initiative.roll}}k{{system.initiative.keep}}+{{system.initiative.total_mod}}</td>
+          </td>
+        </tr>
+      </table>
+      <table class="defense-table" align="center">
+        <tr>
+          <th colspan="3"> {{localize "l5r45.mech.defense"}} </th>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.mech.defense"}} {{localize "l5r45.skill.rank"}}/{{localize "l5r45.skill.trait"}}</td>
+          <td ><input type="number" name="system.defense.rank" value="{{system.defense.rank}}"
+              data-type="Number" /></td>
+          <td >
+            <select class="defense-trait inline-defense-edit" data-field="system.trait">
+              <option selected disabled>{{localize "l5r45.skill.trait"}}</option>
+              {{#select system.defense.trait}}
+              {{#each @root.config.traits as |name type|}}
+              <option value="{{type}}">{{localize name}}</option>
+              {{/each}}
+              {{/select}}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.mech.roll"}}/{{localize "l5r45.mech.keep"}} {{localize "l5r45.mech.bonus"}}</td>
+          <td><input type="number" name="system.defense.roll_mod" value="{{system.defense.roll_mod}}"
+              data-type="Number" /></td>
+          <td><input type="number" name="system.defense.keep_mod" value="{{system.defense.keep_mod}}"
+              data-type="Number" /></td>
+        </tr>
+        <tr>
+          <td>{{localize "l5r45.mech.mod"}}</td>
+          <td colspan="2"><input type="number" name="system.defense.total_mod" value="{{system.defense.total_mod}}"
+              data-type="Number" /></td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <a class="icon-item defense-roll">
+                <img title="Roll defense" src="icons/dice/d10black.svg" />
+                {{system.defense.roll}}k{{system.defense.keep}}+{{system.defense.total_mod}}
+              </a></td>
+            </td>
+          </tr>
+      </table>
+      {{> "systems/l5r45/templates/partials/pc-armor-tn.hbs"}}
+    </div>
+  </label>
+</section>
