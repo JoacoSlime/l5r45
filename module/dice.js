@@ -79,7 +79,7 @@ export async function SkillRoll({
   if (rollMod != 0 || keepMod != 0 || totalMod != 0) {
     label += ` ${game.i18n.localize("l5r45.mech.mod")} (${rollMod}k${keepMod}+${totalMod})`;
   }
-  let rollResult = await new Roll(rollFormula).roll({ async: true });
+  let rollResult = await new Roll(rollFormula).roll();
 
   let renderedRoll = await rollResult.render({
     template: messageTemplate,
@@ -123,7 +123,7 @@ export async function RingRoll({
     let diceToRoll = parseInt(ringRank);
     let diceToKeep = parseInt(ringRank);
     let rollFormula = `${diceToRoll}d10k${diceToKeep}`;
-    let rollResult = await new Roll(rollFormula).roll({ async: true });
+    let rollResult = await new Roll(rollFormula).roll();
     let renderedRoll = await rollResult.render({
       template: messageTemplate,
       flavor: label
@@ -172,7 +172,7 @@ export async function RingRoll({
     let diceToKeep = parseInt(ringRank) + parseInt(keepMod);
     let { diceRoll, diceKeep, bonus } = TenDiceRule(diceToRoll, diceToKeep, totalMod);
     let rollFormula = `${diceRoll}d10k${diceKeep}x10+${bonus}`;
-    let rollResult = await new Roll(rollFormula).roll({ async: true });
+    let rollResult = await new Roll(rollFormula).roll();
 
     let renderedRoll = await rollResult.render({
       template: messageTemplate,
@@ -203,7 +203,7 @@ export async function RingRoll({
     let diceToKeep = parseInt(ringRank) + parseInt(keepMod);
     let { diceRoll, diceKeep, bonus } = TenDiceRule(diceToRoll, diceToKeep, totalMod);
     let rollFormula = `${diceRoll}d10k${diceKeep}x10+${bonus}`;
-    let rollResult = await new Roll(rollFormula).roll({ async: true });
+    let rollResult = await new Roll(rollFormula).roll();
 
     let renderedRoll = await rollResult.render({
       template: messageTemplate,
@@ -264,10 +264,10 @@ export async function TraitRoll({
   let diceToKeep = parseInt(traitRank) + parseInt(keepMod);
   let { diceRoll, diceKeep, bonus } = TenDiceRule(diceToRoll, diceToKeep, totalMod);
   let rollFormula = `${diceRoll}d10k${diceKeep}x10+${bonus}`;
-  let rollResult = await new Roll(rollFormula).roll({ async: true });
+  let rollResult = await new Roll(rollFormula).roll();
   if (unskilled) {
     rollFormula = `${diceRoll}d10k${diceKeep}+${bonus}`;
-    rollResult = await new Roll(rollFormula).roll({ async: true });
+    rollResult = await new Roll(rollFormula).roll();
     label += ` (${game.i18n.localize("l5r45.mech.unskilledRoll")})`
   }
 
@@ -454,7 +454,7 @@ export async function WeaponRoll({
   ({diceRoll: diceToRoll, diceKeep: diceToKeep, bonus: totalMod} = TenDiceRule(diceToRoll, diceToKeep, totalMod));
 
   let rollFormula = `${diceToRoll}d10k${diceToKeep}x>=${explodesOn}+${totalMod}`;
-  let rollResult = await new Roll(rollFormula).roll({ async: true });
+  let rollResult = await new Roll(rollFormula).roll();
   let renderedRoll = await rollResult.render();
 
   let templateContext = {
