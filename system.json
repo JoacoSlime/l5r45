@@ -12,7 +12,7 @@
       "url": "https://github.com/JoacoSlime/"
     }
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "compatibility": {
     "minimum": 12,
     "verified": 12,
@@ -49,6 +49,6 @@
   },
   "url": "https://github.com/JoacoSlime/l5r45",
   "manifest": "https://raw.github.com/JoacoSlime/l5r45/main/system.json",
-  "download": "https://github.com/JoacoSlime/l5r45/archive/refs/tags/initial-release.zip",
+  "download": "https://github.com/JoacoSlime/l5r45/archive/refs/tags/0.0.2.zip",
   "license": "GPL v3"
 }
