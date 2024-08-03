@@ -22,15 +22,13 @@
       </div>
       {{/if}}
     </div>
-    {{#unless inSheet}}
-    <div class="armor-effects">
-      {{{system.description}}}
-    </div>
-    {{/unless}}
     {{#if inSheet}}
     <div>
       <a class="item-edit" title="{{localize " l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>
     </div>
     {{/if}}
+    <div class="armor-effects">
+      {{{system.description}}}
+    </div>
   </div>
 </div>

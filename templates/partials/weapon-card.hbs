@@ -28,11 +28,9 @@
         </select>
       {{/if}}
     </div>
-    {{#unless inSheet}}
-      <div class="weapon-effects">
-        {{{system.description}}}
-      </div>
-    {{/unless}}
+    <div class="weapon-effects">
+      {{{system.description}}}
+    </div>
     {{#if inSheet}}
       <div>
         <a class="item-edit"  title="{{localize "l5r45.sheet.edit"}}"><i class="fas fa-edit fa-fw"></i></a>

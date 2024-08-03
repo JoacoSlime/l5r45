@@ -370,10 +370,6 @@ async function GetSpellOptions(ringName) {
           label: game.i18n.localize("l5r45.mech.ringRoll"),
           callback: html => resolve(_processRingRollOptions(html[0].querySelector("form")))
         },
-        spell: {
-          label: game.i18n.localize("l5r45.mech.spellCasting"),
-          callback: html => resolve(_processSpellRollOptions(html[0].querySelector("form")))
-        },
         cancel: {
           label: game.i18n.localize("l5r45.mech.cancel"),
           callback: () => resolve({ cancelled: true })

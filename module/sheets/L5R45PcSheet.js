@@ -242,16 +242,6 @@ export default class l5r45PcSheet extends ActorSheet {
     }
     let skillRank = this.actor.system.defense.rank;
     let skillName = "defense";
-    console.log({
-      woundPenalty: this.actor.system.woundPenalty,
-      actorTrait: actorTrait,
-      skillRank: skillRank,
-      skillName: skillName,
-      askForOptions: event.shiftKey,
-      skillTrait,
-      rollBonus: rollBonus,
-      keepBonus: keepBonus,
-      totalBonus: totalBonus});
     Dice.SkillRoll({
       woundPenalty: this.actor.system.woundPenalty,
       actorTrait: actorTrait,

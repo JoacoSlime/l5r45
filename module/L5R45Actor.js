@@ -176,12 +176,16 @@ export default class l5r45Actor extends Actor {
     l5r45Data.woundPenalty = l5r45Data.currentWoundLevel.penalty
 
     // calculate insight points
-    let insightRings = ((l5r45Data.rings.air + l5r45Data.rings.earth + l5r45Data.rings.fire + l5r45Data.rings.water + l5r45Data.rings.void.rank) * 10) + parseInt(l5r45Data.defense.rank);
-    let insighSkills = 0;
+    let insightRings = ((l5r45Data.rings.air + l5r45Data.rings.earth + l5r45Data.rings.fire + l5r45Data.rings.water + l5r45Data.rings.void.rank) * 10);
+    console.log("Insight Rings: " + insightRings);
+    let insighSkills = parseInt(l5r45Data.defense.rank);
+    console.log("Insight Skills: " + insighSkills);
     for (const [skill, skillData] of Object.entries(skills)) {
-      insighSkills += parseInt(skillData.system.rank) * ((skillData.system.type === "knowledge" || skillData.system.type === "artistic") ? 2 : 1);
+      insighSkills += parseInt(skillData.system.rank) + ((skillData.system.type === "knowledge" || skillData.system.type === "artistic") ? parseInt(skillData.system.rank) : 0);
     }
+    console.log("Insight Rings post calculation: " + insighSkills);
     l5r45Data.insight.points = insightRings + insighSkills;
+    console.log("Insight total: " + l5r45Data.insight.points);
 
     // calculate insight levels
     let calculateRank = game.settings.get("l5r45", "calculateRank");
