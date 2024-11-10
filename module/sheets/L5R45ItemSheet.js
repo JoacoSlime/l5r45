@@ -12,13 +12,27 @@ export default class l5r45ItemSheet extends ItemSheet {
     return `systems/l5r45/templates/sheets/${this.item.type}-sheet.hbs`;
   }
 
-  getData() {
+
+  async getData() {
     const baseData = super.getData();
+    let enrichedData = baseData.item.system;
+    if (typeof enrichedData.specialRules !== 'undefined') {
+      enrichedData.enrichedSpecialRules = await TextEditor.enrichHTML(enrichedData.specialRules, {
+        secrets: this.item.isOwner,
+        relativeTo: this,
+        rollData: this.object.getRollData()
+      });
+    }
+    enrichedData.enrichedDescription = await TextEditor.enrichHTML(enrichedData.description, {
+      secrets: this.item.isOwner,
+      relativeTo: this,
+      rollData: this.object.getRollData()
+    });
     let sheetData = {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
-      data: baseData.item.system,
+      data: enrichedData,
       config: CONFIG.l5r45
     };
 

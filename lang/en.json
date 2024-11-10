@@ -56,7 +56,6 @@
       "range": "Range",
       "arrow": "Arrow",
       "typeWeapon": "Weapon",
-      "typeBow": "Bow",
       "damage": "Damage",
       "explodesOn": "Explodes On"
     },

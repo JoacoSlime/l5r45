@@ -13,10 +13,6 @@
       {{#each weapons as |weapon id|}}
       {{> "systems/l5r45/templates/partials/weapon-card.hbs" system=weapon.system ranged=false inSheet=true}}
       {{/each}}
-
-      {{#each bows as |weapon id|}}
-      {{> "systems/l5r45/templates/partials/weapon-card.hbs" system=weapon.system ranged=true inSheet=true}}
-      {{/each}}
     </section>
     <section class="armors-list">
       {{#each armors as |armor id|}}

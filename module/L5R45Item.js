@@ -1,7 +1,7 @@
 export default class l5r45Item extends Item {
   chatTemplate = {
+    "commonItem": "systems/l5r45/templates/partials/commonItem-card.hbs",
     "weapon": "systems/l5r45/templates/partials/weapon-card.hbs",
-    "bow": "systems/l5r45/templates/partials/weapon-card.hbs",
     "skill": "systems/l5r45/templates/partials/skill-card.hbs",
     "armor": "systems/l5r45/templates/partials/armor-card.hbs",
     "spell": "systems/l5r45/templates/partials/spell-card.hbs",
@@ -21,9 +21,6 @@ export default class l5r45Item extends Item {
       switch (this.type) {
         case 'weapon':
           img = "systems/l5r45/assets/icons/sword.png";
-          break;
-        case 'bow':
-          img = "systems/l5r45/assets/icons/bow.png";
           break;
         case 'skill':
           img = "systems/l5r45/assets/icons/flower.png";
@@ -65,6 +62,7 @@ export default class l5r45Item extends Item {
     let l5r45Data = itemData.system;
 
     // get damage from arrows for bows
+    /*
     if (itemData.type == "bow") {
       let actorData;
       let actorStr = 0;
@@ -104,15 +102,32 @@ export default class l5r45Item extends Item {
       l5r45Data.damageKeep = arrowKeep;
       l5r45Data.damageFormula = `${l5r45Data.damageRoll}k${l5r45Data.damageKeep}`;
     }
+    */
 
+  }
+  
+  /**
+   * Prepare a data object which is passed to any Roll formulas which are created related to this Item
+   * @private
+   */
+  getRollData() {
+    // Starts off by populating the roll data with `this.system`
+    const rollData = { ...super.getRollData() };
 
+  
+    // Quit early if there's no parent actor
+    if (!this.actor) return rollData;
+  
+    // If present, add the actor's roll data
+    rollData.actor = this.actor.getRollData();
+  
+    return rollData;
   }
 
   async roll() {
     const item = this;
 
     // Initialize chat data.
-
     let content = await renderTemplate(this.chatTemplate[this.type], item);
     const speaker = ChatMessage.getSpeaker({ actor: this.actor });
     const rollMode = game.settings.get('core', 'rollMode');

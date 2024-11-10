@@ -234,7 +234,6 @@
       "skill",
       "commonItem",
       "weapon",
-      "bow",
       "armor",
       "technique",
       "spell",
@@ -245,7 +244,9 @@
     "templates": {
       "itemDescription": {
         "description": "",
-        "specialRules": ""
+        "specialRules": "",
+        "enrichedDescription": "",
+        "enrichedSpecialRules": ""
       }
     },
     "commonItem": {
@@ -261,19 +262,7 @@
       "damageKeep": 0,
       "size": "Medium",
       "damageFormula": "",
-      "explodesOn": 10
-    },
-    "bow": {
-      "templates": [
-        "itemDescription"
-      ],
-      "str": 1,
-      "size": "Large",
-      "range": 100,
-      "arrow": "willow",
-      "damageRoll": 0,
-      "damageKeep": 0,
-      "explodesOn": 10
+      "explodesOn": 11
     },
     "armor": {
       "templates": [

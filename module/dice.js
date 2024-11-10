@@ -1,3 +1,20 @@
+async function getTraitOrRing(skillTrait){
+  switch (skillTrait) {
+    case "void":
+      return "l5r45.rings.void";
+    case "fire":
+      return "l5r45.rings.fire";
+    case "water":
+      return "l5r45.rings.water";
+    case "earth":
+      return "l5r45.rings.earth";
+    case "air":
+      return "l5r45.rings.air";
+    default:
+      return `l5r45.traits.${skillTrait}`;
+  }
+}
+
 export async function SkillRoll({
   woundPenalty = 0,
   actorTrait = null,
@@ -11,27 +28,9 @@ export async function SkillRoll({
   totalBonus = 0 } = {}) {
   const messageTemplate = "systems/l5r45/templates/chat/simple-roll.hbs";
 
-  async function getTraitOrRing(){
-    switch (skillTrait) {
-      case "void":
-        return "l5r45.rings.void";
-      case "fire":
-        return "l5r45.rings.fire";
-      case "water":
-        return "l5r45.rings.water";
-      case "earth":
-        return "l5r45.rings.earth";
-      case "air":
-        return "l5r45.rings.air";
-      default:
-        return `l5r45.traits.${skillTrait}`;
-    }
-  }
-
   skillName = (skillName === "defense") ? game.i18n.localize("l5r45.mech.defense") : skillName;
 
   const traitString = skillTrait === await getTraitOrRing(skillTrait);
-
   let optionsSettings = game.settings.get("l5r45", "showSkillRollOptions");
   let rollType = game.i18n.localize("l5r45.mech.skillRoll");
   let label = `${rollType}: ${skillName} / ${game.i18n.localize(traitString)}`;
@@ -409,6 +408,7 @@ function _processRingRollOptions(form) {
 }
 
 export async function WeaponRoll({
+  actorTrait = null,
   diceRoll = null,
   diceKeep = null,
   explodesOn = null,
@@ -443,7 +443,7 @@ export async function WeaponRoll({
     }
   }
 
-  let diceToRoll = parseInt(diceRoll) + parseInt(rollMod);
+  let diceToRoll = parseInt(actorTrait) + parseInt(diceRoll) + parseInt(rollMod);
   let diceToKeep = parseInt(diceKeep) + parseInt(keepMod);
 
   // Apply Ten Dice Rule
@@ -514,7 +514,8 @@ export async function NpcRoll({
   rollName = null,
   description = null,
   toggleOptions = true,
-  rollType = null } = {}) {
+  rollType = null,
+  explota = true } = {}) {
   let label = `${rollName}`;
   let bonus = 0;
   let unskilled = false;
@@ -546,6 +547,7 @@ export async function NpcRoll({
     diceRoll += parseInt(checkOptions.rollMod);
     diceKeep += parseInt(checkOptions.keepMod);
     bonus += parseInt(checkOptions.totalMod);
+    explota = checkOptions.explota;
     if (checkOptions.void) {
       diceRoll += 1;
       diceKeep += 1;
@@ -558,7 +560,7 @@ export async function NpcRoll({
 
   ({ diceRoll, diceKeep, bonus } = TenDiceRule(diceRoll, diceKeep, bonus));
 
-  const rollFormula = `${diceRoll}d10k${diceKeep}x10+${bonus}`;
+  const rollFormula = `${diceRoll}d10k${diceKeep}`+ (explota ? `x10` : ``) +`+${bonus}`;
   console.log("Description", description)
   if (description) {
     label += ` (${description})`
@@ -574,17 +576,22 @@ export async function NpcRoll({
       flavor: label,
       speaker: ChatMessage.getSpeaker()
     }
-    return await new Roll(rollFormula).roll({ async: false }).toMessage(messageData)
-  }
+    let rollResult = await new Roll(rollFormula).roll();
+    rollResult.toMessage(messageData);
 
-  return await new Roll(rollFormula).roll({ async: false }).toMessage(messageData)
+    return false;
+  }
+  let rollResult = await new Roll(rollFormula).roll();
+  rollResult.toMessage(messageData);
+
+  return false;
 }
 
 
 
-async function getNpcRollOptions(rollName, noVoid, trait = false) {
+async function getNpcRollOptions(rollName, noVoid, trait = false, npc = true) {
   const template = "systems/l5r45/templates/chat/roll-modifiers-dialog.hbs";
-  const html = await renderTemplate(template, { noVoid, trait });
+  const html = await renderTemplate(template, { noVoid, npc, trait });
   return new Promise(resolve => {
     const data = {
       title: rollName,
@@ -609,6 +616,7 @@ async function getNpcRollOptions(rollName, noVoid, trait = false) {
 function _processNpcRollOptions(form) {
   return {
     applyWoundPenalty: form.woundPenalty.checked,
+    explota: form.explota.checked,
     unskilled: form.unskilled ? form.unskilled.checked : false,
     rollMod: form.rollMod.value,
     keepMod: form.keepMod.value,

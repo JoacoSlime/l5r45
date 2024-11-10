@@ -36,6 +36,6 @@
     <input name="system.explodesOn" type="number" value="{{item.system.explodesOn}}" data-type="Number" />
     </td>
   </table>
-    {{editor item.system.description target="system.description" button=true  editable=editable}}
+    {{editor item.system.enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
   </div>
 </form>

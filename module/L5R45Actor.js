@@ -40,6 +40,10 @@ export default class l5r45Actor extends Actor {
     super.prepareData();
   }
 
+  /**
+   * Prepare actor data that depends on items and effects
+   * @override
+   */
   prepareDerivedData() {
     const actorData = this;
     const l5r45Data = actorData.system;
@@ -177,15 +181,11 @@ export default class l5r45Actor extends Actor {
 
     // calculate insight points
     let insightRings = ((l5r45Data.rings.air + l5r45Data.rings.earth + l5r45Data.rings.fire + l5r45Data.rings.water + l5r45Data.rings.void.rank) * 10);
-    console.log("Insight Rings: " + insightRings);
     let insighSkills = parseInt(l5r45Data.defense.rank);
-    console.log("Insight Skills: " + insighSkills);
     for (const [skill, skillData] of Object.entries(skills)) {
       insighSkills += parseInt(skillData.system.rank) + ((skillData.system.type === "knowledge" || skillData.system.type === "artistic") ? parseInt(skillData.system.rank) : 0);
     }
-    console.log("Insight Rings post calculation: " + insighSkills);
     l5r45Data.insight.points = insightRings + insighSkills;
-    console.log("Insight total: " + l5r45Data.insight.points);
 
     // calculate insight levels
     let calculateRank = game.settings.get("l5r45", "calculateRank");

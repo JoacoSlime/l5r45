@@ -55,8 +55,7 @@
       "str": "Force",
       "range": "Portée",
       "arrow": "Flèches",
-      "typeWeapon": "Arme",
-      "typeBow": "Arc",
+      "typeWeapon": "Arme", 
       "damage": "Dégats",
       "explodesOn": "Explose en"
     },

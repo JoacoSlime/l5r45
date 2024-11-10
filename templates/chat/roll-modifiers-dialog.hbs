@@ -5,6 +5,12 @@
     <input type="checkbox" name="woundPenalty" checked="checked" />
   </div>
   {{/unless}}
+  {{#if npc}}
+  <div class="form-group">
+    <label>{{localize "l5r45.chat.explodesOn"}}?</label>
+    <input type="checkbox" name="explota" />
+  </div>
+  {{/if}}
   {{#unless noVoid}}
   <div class="form-group">
     <label>{{localize "l5r45.rings.void"}}?</label>

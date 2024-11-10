@@ -16,7 +16,8 @@ export default class l5r45NpcSheet extends ActorSheet {
     return this.options.template;
   }
 
-  getData() {
+  /** @override */
+  async getData() {
     // Retrieve the data structure from the base sheet.
     const baseData = super.getData();
 
@@ -30,7 +31,6 @@ export default class l5r45NpcSheet extends ActorSheet {
     baseData.config = CONFIG.l5r45;
 
     baseData.skills = baseData.items.filter(function (item) { return item.type == "skill" });
-
     return baseData;
   }
 
@@ -76,6 +76,7 @@ export default class l5r45NpcSheet extends ActorSheet {
     const rollName = `${this.actor.name}: ${rollTypeLabel} ${trait}`;
     const toggleOptions = event.shiftKey;
     const rollType = event.currentTarget.dataset.rolltype;
+    const explota = false;
     return await Dice.NpcRoll(
       {
         woundPenalty,
@@ -83,7 +84,8 @@ export default class l5r45NpcSheet extends ActorSheet {
         diceKeep,
         rollName,
         toggleOptions,
-        rollType
+        rollType,
+        explota
       }
     )
   }
@@ -98,6 +100,7 @@ export default class l5r45NpcSheet extends ActorSheet {
     const description =  dataset.dmgdesc ? `${dataset.dmgdesc}` : ''
     const toggleOptions = event.shiftKey;
     const rollType = "skill";
+    const explota = true;
 
     return await Dice.NpcRoll(
       {
@@ -107,7 +110,8 @@ export default class l5r45NpcSheet extends ActorSheet {
         rollName,
         description,
         toggleOptions,
-        rollType
+        rollType,
+        explota
       }
     )
   }
@@ -119,6 +123,7 @@ export default class l5r45NpcSheet extends ActorSheet {
     const description = event.currentTarget.dataset.desc;
     const toggleOptions = event.shiftKey;
     const rollType = "skill";
+    const explota = false;
 
     return await Dice.NpcRoll(
       {
@@ -127,7 +132,8 @@ export default class l5r45NpcSheet extends ActorSheet {
         rollName,
         description,
         toggleOptions,
-        rollType
+        rollType,
+        explota
       }
     )
   }
@@ -199,10 +205,25 @@ export default class l5r45NpcSheet extends ActorSheet {
     let skillTrait = item.system.trait;
     let actorTrait = null;
     // some skills use the void ring as a trait
-    if (skillTrait == 'void') {
-      actorTrait = this.actor.system.rings.void.rank;
-    } else {
-      actorTrait = this.actor.system.traits[skillTrait];
+    switch(skillTrait) {
+      case "void":
+        actorTrait = this.actor.system.rings.void.rank;
+        break;
+      case "fire":
+        actorTrait = this.actor.system.rings.fire;
+        break;
+      case "water":
+        actorTrait = this.actor.system.rings.water;
+        break;
+      case "earth":
+        actorTrait = this.actor.system.rings.earth;
+        break;
+      case "air":
+        actorTrait = this.actor.system.rings.air;
+        break;
+      default:
+        actorTrait = this.actor.system.traits[skillTrait];
+        break;
     }
     let skillRank = item.system.rank;
     let skillName = item.name;

@@ -57,9 +57,9 @@
       "range": "Alcance",
       "arrow": "Flecha",
       "typeWeapon": "Arma",
-      "typeBow": "Arco",
       "damage": "Daño",
-      "explodesOn": "Explota en"
+      "explodesOn": "Explota en",
+      "trait": "Característica"
     },
     "armor": {
       "name": "Armadura",
@@ -111,6 +111,7 @@
       "rank": "Rango",
       "xp": "Experiencia",
       "insight": "Sabiduría",
+      "none": "Ninguna",
       "sta": "Resistencia",
       "wil": "Voluntad",
       "str": "Fuerza",

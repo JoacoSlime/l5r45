@@ -26,8 +26,8 @@
       </tr>
     </table>
     <h2>{{localize "l5r45.sheet.rulesSummary"}}</h2>
-    {{editor item.system.specialRules target="system.specialRules" button=true  editable=editable}}
+    {{editor item.system.enrichedSpecialRules target="system.specialRules" button=true  editable=editable engine="prosemirror" collaborate=false}}
     <h2>{{localize "l5r45.sheet.description"}}</h2>
-    {{editor item.system.description target="system.description" button=true  editable=editable}}
+    {{editor item.system.enrichedDescription target="system.description" button=true  editable=editable engine="prosemirror" collaborate=false}}
   </div>
 </form>

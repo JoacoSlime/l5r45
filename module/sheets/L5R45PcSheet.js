@@ -30,7 +30,7 @@ export default class l5r45PcSheet extends ActorSheet {
       name: game.i18n.localize("l5r45.mech.toChat"),
       icon: '<i class="fas fa-edit"></i>',
       callback: element => {
-        let item = this.actor.items.get(element.data("item-id"));
+        const item = this.actor.items.get(element.data("item-id"));
         item.roll();
       }
     },
@@ -49,8 +49,8 @@ export default class l5r45PcSheet extends ActorSheet {
     }
     return this.options.template;
   }
-
-  getData() {
+ 
+  async getData() {
     // Retrieve the data structure from the base sheet.
     const baseData = super.getData();
 
@@ -59,7 +59,7 @@ export default class l5r45PcSheet extends ActorSheet {
 
     // Add the actor's data to base structure for easier access
     baseData.system = actorData.system;
-
+    
     // Add config data to base sctructure
     baseData.config = CONFIG.l5r45;
 
@@ -67,7 +67,6 @@ export default class l5r45PcSheet extends ActorSheet {
 
     baseData.commonItems = baseData.items.filter(function (item) { return item.type == "commonItem" });
     baseData.weapons = baseData.items.filter(function (item) { return item.type == "weapon" });
-    baseData.bows = baseData.items.filter(function (item) { return item.type == "bow" });
     baseData.armors = baseData.items.filter(function (item) { return item.type == "armor" });
     baseData.skills = this.constructItemLists(baseData).skills;
     baseData.techniques = baseData.items.filter(function (item) { return item.type == "technique" });
@@ -77,6 +76,34 @@ export default class l5r45PcSheet extends ActorSheet {
     baseData.katas = baseData.items.filter(function (item) { return item.type == "kata" });
     baseData.kihos = baseData.items.filter(function (item) { return item.type == "kiho" });
     baseData.glories = baseData.items.filter(function (item) { return item.type == "glory" });
+
+    // Enrich item descriptions
+    const enrichItems = async (items) => {
+      for (let item of items) {
+        let itemRollData = this.actor.items.get(item._id).getRollData();
+        if (typeof item.system.specialRules !== 'undefined') {
+          item.system.enrichedSpecialRules = await TextEditor.enrichHTML(item.system.specialRules, {
+            secrets: item.isOwner,
+            rollData: itemRollData
+          });
+        }
+          item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description, {
+            secrets: item.isOwner,
+            rollData: itemRollData
+          });
+      }
+    };
+
+    await enrichItems(baseData.commonItems);
+    await enrichItems(baseData.weapons);
+    await enrichItems(baseData.armors);
+    await enrichItems(baseData.techniques);
+    await enrichItems(baseData.advantages);
+    await enrichItems(baseData.disadvantages);
+    await enrichItems(baseData.spells);
+    await enrichItems(baseData.katas);
+    await enrichItems(baseData.kihos);
+    await enrichItems(baseData.glories);
 
     baseData.masteries = [];
     for (let skill of baseData.skills) {
@@ -183,24 +210,42 @@ export default class l5r45PcSheet extends ActorSheet {
 
     let weaponName = item.name;
     let rollData = item.getRollData();
-    let actorTrait;
     let diceRoll;
     let diceKeep;
-    let explodesOn = rollData.explodesOn ? rollData.explodesOn : 10;
-    if (item.type == 'weapon') {
-      actorTrait = this.actor.system.traits.str;
-      diceRoll = parseInt(actorTrait) + parseInt(item.system.damageRoll);
-    } else if (item.type == 'bow') {
-      diceRoll = rollData.damageRoll;
-      diceKeep = rollData.damageKeep;
-    } else {
-      return ui.notifications.error(`y u do dis?`);
+    let explodesOn = rollData.explodesOn ? rollData.explodesOn : 11;
+    let actorTrait = null;
+    let traitName = rollData.trait ? rollData.trait : "none";
+    // some skills use the void ring as a trait
+    switch(traitName) {
+      case "none":
+        actorTrait = 0;
+        break;
+      case "void":
+        actorTrait = this.actor.system.rings.void.rank;
+        break;
+      case "fire":
+        actorTrait = this.actor.system.rings.fire;
+        break;
+      case "water":
+        actorTrait = this.actor.system.rings.water;
+        break;
+      case "earth":
+        actorTrait = this.actor.system.rings.earth;
+        break;
+      case "air":
+        actorTrait = this.actor.system.rings.air;
+        break;
+      default:
+        actorTrait = this.actor.system.traits[rollData.trait];
+        break;
     }
 
 
     diceKeep = parseInt(item.system.damageKeep)
+    diceRoll = parseInt(item.system.damageRoll);
     Dice.WeaponRoll(
       {
+        actorTrait: actorTrait,
         diceRoll: diceRoll,
         diceKeep: diceKeep,
         explodesOn: explodesOn,
